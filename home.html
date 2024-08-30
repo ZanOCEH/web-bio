@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle">Welcome to Your Web!</title>
+    <style>
+      /* Gaya yang sama seperti sebelumnya */
+      /* Gaya untuk halaman */
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #121212; /* Latar belakang gelap */
+      }
+
+      /* Gaya untuk teks judul */
+      .title {
+        font-size: 4vw; /* Ukuran teks judul responsif */
+        max-width: 90vw;
+        color: #ffffff; /* Warna teks */
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        margin-bottom: 20px; /* Jarak antara teks judul dan logo */
+      }
+
+      /* Mengatur gaya untuk logo */
+      .logo {
+        border-radius: 50%;
+        overflow: hidden;
+        width: 20vw;
+        height: 20vw;
+        max-width: 200px;
+        max-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        animation: rainbowShadow 5s infinite alternate;
+        margin-bottom: 20px;
+      }
+
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Gaya untuk kartu bar musik */
+      .music-player {
+        display: flex;
+        align-items: center;
+        background-color: #1f1f1f;
+        border-radius: 20px;
+        padding: 10px;
+        width: 90vw;
+        max-width: 300px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .cassette-icon {
+        width: 10vw;
+        height: 10vw;
+        max-width: 50px;
+        max-height: 50px;
+        margin-right: 15px;
+        animation: spin 5s linear infinite;
+      }
+
+      .audio-controls {
+        flex-grow: 1;
+      }
+
+      audio {
+        width: 100%;
+      }
+
+      /* Animasi bayangan pelangi */
+      @keyframes rainbowShadow {
+        0% {
+          box-shadow: 0 0 1vw 0.25vw red;
+        }
+        20% {
+          box-shadow: 0 0 1vw 0.25vw orange;
+        }
+        40% {
+          box-shadow: 0 0 1vw 0.25vw yellow;
+        }
+        60% {
+          box-shadow: 0 0 1vw 0.25vw green;
+        }
+        80% {
+          box-shadow: 0 0 1vw 0.25vw blue;
+        }
+        100% {
+          box-shadow: 0 0 1vw 0.25vw purple;
+        }
+      }
+
+      /* Animasi putar untuk ikon kaset */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Gaya untuk kartu */
+      .card-container {
+        width: 90vw;
+        max-width: 1000px;
+        margin: 20px 0;
+      }
+
+      .card {
+        background: #2e2e2e;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        text-align: center;
+        position: relative;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+
+      .card img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+
+      .card-content {
+        text-align: left;
+      }
+
+      .card-title {
+        font-size: 18px;
+        margin: 5px 0;
+        font-weight: bold;
+      }
+
+      .card-action {
+        color: #03a9f4;
+      }
+
+      .card-action a {
+        text-decoration: none;
+        color: #03a9f4;
+        font-weight: bold;
+      }
+
+      .no-cards {
+        color: #ffffff;
+        font-size: 1.5vw;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* Media query untuk penyesuaian layar kecil */
+      @media (max-width: 600px) {
+        .title {
+          font-size: 6vw; /* Ukuran teks judul untuk layar kecil */
+        }
+
+        .logo {
+          width: 30vw;
+          height: 30vw;
+        }
+
+        .music-player {
+          width: 95vw;
+        }
+
+        .cassette-icon {
+          width: 15vw;
+          height: 15vw;
+        }
+
+        .no-cards {
+          font-size: 4vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Teks judul responsif -->
+    <h1 class="title" id="pageTitle">Welcome to Your Web!</h1>
+
+    <!-- Logo berbentuk lingkaran dengan bayangan pelangi -->
+    <div class="logo">
+      <img src="logo.gif" alt="Logo Circle" id="logoImage" />
+    </div>
+
+    <!-- Bar musik berbentuk kartu -->
+    <div class="music-player">
+      <!-- Ikon kaset yang berputar -->
+      <img src="cassette.png" alt="Cassette Icon" class="cassette-icon" />
+
+      <!-- Kontrol audio -->
+      <div class="audio-controls">
+        <!-- Gunakan elemen audio HTML untuk memutar musik -->
+        <audio controls>
+          <!-- Ganti "song.mp3" dengan path ke file MP3 Anda atau URL lagu -->
+          <source src="song.mp3" type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
+    </div>
+
+    <!-- Tempat untuk menampilkan kartu -->
+    <div class="card-container" id="cardContainer"></div>
+
+    <!-- Teks jika belum ada objek -->
+    <div class="no-cards" id="noCards">Belum Ada Objek</div>
+
+    <script>
+      function displayCards() {
+        const cardContainer = document.getElementById("cardContainer");
+        const noCards = document.getElementById("noCards");
+        const logoImage = document.getElementById("logoImage");
+        const pageTitle = document.getElementById("pageTitle");
+        cardContainer.innerHTML = "";
+
+        const logoUrl = localStorage.getItem("logoUrl");
+        if (logoUrl) {
+          logoImage.src = logoUrl;
+        }
+
+        const musicFile = localStorage.getItem("musicFile");
+        if (musicFile) {
+          const audio = document.querySelector("audio");
+          audio.src = musicFile;
+        }
+
+        const cards = JSON.parse(localStorage.getItem("cards")) || [];
+        if (cards.length === 0) {
+          noCards.style.display = "block";
+        } else {
+          noCards.style.display = "none";
+          cards.forEach((card) => {
+            const cardElement = document.createElement("div");
+            cardElement.className = "card";
+            cardElement.innerHTML = `
+                        <img src="${card.imageUrl}" alt="Card Image">
+                        <div class="card-content">
+                            <h3 class="card-title">${card.title}</h3>
+                            <p class="card-action"><a href="${card.link}" target="_blank">Click Now!</a></p>
+                        </div>
+                    `;
+            cardContainer.appendChild(cardElement);
+          });
+        }
+
+        const webTitle = localStorage.getItem("webTitle");
+        if (webTitle) {
+          pageTitle.textContent = webTitle;
+        }
+      }
+
+      window.onload = displayCards;
+    </script>
+  </body>
+</html>

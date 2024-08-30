@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow-y: auto;
+        text-align: center;
+      }
+
+      h1 {
+        color: #ffffff;
+        margin: 20px 0;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 800px;
+      }
+
+      form {
+        background: #1e1e1e;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+
+      form label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="url"],
+      input[type="file"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #444;
+        border-radius: 5px;
+        background-color: #333;
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: #03a9f4;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .card-container {
+        width: 100%;
+        max-width: 800px;
+        margin-top: 20px;
+        overflow-y: auto;
+      }
+
+      .card {
+        background: #2e2e2e;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+
+      .card-content {
+        text-align: left;
+      }
+
+      .card-title {
+        font-size: 18px;
+        margin: 5px 0;
+        font-weight: bold;
+      }
+
+      .card-action {
+        color: #03a9f4;
+      }
+
+      .card-action a {
+        text-decoration: none;
+        color: #03a9f4;
+        font-weight: bold;
+      }
+
+      .card-delete {
+        background: #f44336;
+        border: none;
+        color: #ffffff;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      /* Media query untuk penyesuaian layar kecil */
+      @media (max-width: 600px) {
+        form {
+          width: 95%;
+        }
+
+        .card img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .card-title {
+          font-size: 16px;
+        }
+
+        button {
+          padding: 8px 16px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Admin Panel</h1>
+
+      <!-- Form untuk mengganti logo -->
+      <form id="logoForm">
+        <label for="logoUrl">Ganti URL Logo:</label>
+        <input
+          type="url"
+          id="logoUrl"
+          placeholder="Masukkan URL gambar logo"
+          required
+        />
+        <button type="submit">Ganti Logo</button>
+      </form>
+
+      <!-- Form untuk menambahkan kartu -->
+      <form id="cardForm">
+        <label for="cardImage">URL Gambar Kartu:</label>
+        <input
+          type="url"
+          id="cardImage"
+          placeholder="Masukkan URL gambar kartu"
+          required
+        />
+        <label for="cardTitle">Judul Kartu:</label>
+        <input
+          type="text"
+          id="cardTitle"
+          placeholder="Masukkan judul kartu"
+          required
+        />
+        <label for="cardLink">Link Kartu:</label>
+        <input
+          type="url"
+          id="cardLink"
+          placeholder="Masukkan URL link kartu"
+          required
+        />
+        <button type="submit">Tambah Kartu</button>
+      </form>
+
+      <!-- Form untuk mengganti judul halaman utama -->
+      <form id="titleForm">
+        <label for="webTitle">Ganti Judul Halaman:</label>
+        <input
+          type="text"
+          id="webTitle"
+          placeholder="Masukkan judul halaman utama"
+          required
+        />
+        <button type="submit">Ganti Judul</button>
+      </form>
+
+      <!-- Form untuk mengupload musik dari file -->
+      <form id="musicFileForm" enctype="multipart/form-data">
+        <label for="musicFile">Upload File Musik (.mp3):</label>
+        <input type="file" id="musicFile" accept="audio/mp3" required />
+        <button type="submit">Upload Musik</button>
+      </form>
+
+      <!-- Form untuk menambahkan musik melalui URL -->
+      <form id="musicUrlForm">
+        <label for="musicUrl">URL Musik (.mp3):</label>
+        <input
+          type="url"
+          id="musicUrl"
+          placeholder="Masukkan URL musik"
+          required
+        />
+        <button type="submit">Tambah Musik</button>
+      </form>
+
+      <!-- Tempat untuk menampilkan kartu yang ada -->
+      <div class="card-container" id="cardContainer"></div>
+
+      <!-- Tempat untuk menampilkan musik yang diupload -->
+      <div id="musicPlayerContainer"></div>
+    </div>
+
+    <script>
+      const logoForm = document.getElementById("logoForm");
+      const logoUrlInput = document.getElementById("logoUrl");
+      const cardForm = document.getElementById("cardForm");
+      const cardImageInput = document.getElementById("cardImage");
+      const cardTitleInput = document.getElementById("cardTitle");
+      const cardLinkInput = document.getElementById("cardLink");
+      const titleForm = document.getElementById("titleForm");
+      const webTitleInput = document.getElementById("webTitle");
+      const musicFileForm = document.getElementById("musicFileForm");
+      const musicFileInput = document.getElementById("musicFile");
+      const musicUrlForm = document.getElementById("musicUrlForm");
+      const musicUrlInput = document.getElementById("musicUrl");
+      const cardContainer = document.getElementById("cardContainer");
+      const musicPlayerContainer = document.getElementById(
+        "musicPlayerContainer"
+      );
+
+      logoForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const logoUrl = logoUrlInput.value;
+        localStorage.setItem("logoUrl", logoUrl);
+        alert("Logo berhasil diperbarui");
+      });
+
+      cardForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const card = {
+          imageUrl: cardImageInput.value,
+          title: cardTitleInput.value,
+          link: cardLinkInput.value,
+        };
+        const cards = JSON.parse(localStorage.getItem("cards")) || [];
+        cards.push(card);
+        localStorage.setItem("cards", JSON.stringify(cards));
+        displayCards();
+        cardForm.reset();
+      });
+
+      titleForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const webTitle = webTitleInput.value;
+        localStorage.setItem("webTitle", webTitle);
+        alert("Judul halaman utama berhasil diperbarui");
+      });
+
+      musicFileForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const file = musicFileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (event) {
+            localStorage.setItem("musicFile", event.target.result);
+            alert("Musik berhasil diupload");
+            displayMusicPlayer();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      musicUrlForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const musicUrl = musicUrlInput.value;
+        localStorage.setItem("musicFile", musicUrl);
+        alert("URL musik berhasil ditambahkan");
+        displayMusicPlayer();
+      });
+
+      function displayCards() {
+        const cards = JSON.parse(localStorage.getItem("cards")) || [];
+        cardContainer.innerHTML = "";
+        cards.forEach((card, index) => {
+          const cardElement = document.createElement("div");
+          cardElement.className = "card";
+          cardElement.innerHTML = `
+                    <img src="${card.imageUrl}" alt="Card Image">
+                    <div class="card-content">
+                        <div class="card-title">${card.title}</div>
+                        <a href="${card.link}" class="card-action">Click Now!</a>
+                    </div>
+                    <button class="card-delete" onclick="deleteCard(${index})">Delete</button>
+                `;
+          cardContainer.appendChild(cardElement);
+        });
+      }
+
+      function deleteCard(index) {
+        const cards = JSON.parse(localStorage.getItem("cards")) || [];
+        cards.splice(index, 1);
+        localStorage.setItem("cards", JSON.stringify(cards));
+        displayCards();
+      }
+
+      function displayMusicPlayer() {
+        const musicUrl = localStorage.getItem("musicFile");
+        if (musicUrl) {
+          musicPlayerContainer.innerHTML = `
+                    <audio controls>
+                        <source src="${musicUrl}" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                `;
+        }
+      }
+
+      window.onload = function () {
+        displayCards();
+        displayMusicPlayer();
+        const logoUrl = localStorage.getItem("logoUrl");
+        if (logoUrl) {
+          document.querySelector(".logo img").src = logoUrl;
+        }
+        const webTitle = localStorage.getItem("webTitle");
+        if (webTitle) {
+          document.title = webTitle;
+        }
+      };
+    </script>
+  </body>
+</html>
